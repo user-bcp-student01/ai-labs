@@ -1,0 +1,9 @@
+/target
+/data/*.db
+/data/*.db-*
+/.idea
+*.iml
+.classpath
+.project
+.settings/
+.env

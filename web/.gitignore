@@ -1,0 +1,9 @@
+/node_modules
+/dist
+/coverage
+/.angular
+/.idea
+/.vscode/*
+!/.vscode/extensions.json
+npm-debug.log*
+.env

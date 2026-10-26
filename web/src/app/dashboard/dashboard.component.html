@@ -1,0 +1,29 @@
+<header class="topbar">
+  <div class="topbar-brand">
+    <span class="brand-mark"><span></span><span></span></span>
+    <div>
+      <span class="eyebrow">ReqFlow · Mis requerimientos</span>
+      <h1>Hola, {{ user.displayName || user.username }}</h1>
+    </div>
+  </div>
+  <button type="button" (click)="logout()">Cerrar sesión</button>
+</header>
+
+<main class="content">
+  <div class="state-row" *ngIf="loading">
+    <span class="skeleton"></span>
+    <span class="skeleton"></span>
+    <span class="skeleton"></span>
+  </div>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <section class="grid" *ngIf="!loading && !error">
+    <article class="task" *ngFor="let task of visibleTasks">
+      <div class="task-meta">{{ task.label }}</div>
+      <h2>{{ task.title }}</h2>
+      <p>{{ task.description }}</p>
+      <span class="pill" [class]="'pill-' + (task.status || '').toLowerCase()">{{ statusLabel(task.status) }}</span>
+    </article>
+    <p class="empty" *ngIf="!visibleTasks.length">No hay tareas para mostrar todavía.</p>
+  </section>
+</main>
