@@ -37,9 +37,30 @@ Puedes recorrer los tres componentes. Conserva las evidencias anteriores y añad
 
 Necesitas Docker con Compose y el motor iniciado. Podman Compose es otra opción si ya está preparado en tu equipo.
 
-```bash
+El servicio de autenticación requiere `AUTH_TOKEN_SECRET` y
+`AUTH_CORS_ORIGINS`. Define ambas variables en la terminal antes de iniciar
+Compose; usa un secreto generado localmente y nunca lo guardes en el repositorio.
+Para desarrollo local, permite solo el origen del frontend (`http://localhost:4200`).
+
+PowerShell:
+
+```powershell
+$env:AUTH_TOKEN_SECRET = [Convert]::ToBase64String([Security.Cryptography.RandomNumberGenerator]::GetBytes(32))
+$env:AUTH_CORS_ORIGINS = "http://localhost:4200"
 docker compose up --build
 ```
+
+macOS/Linux:
+
+```bash
+export AUTH_TOKEN_SECRET="$(openssl rand -base64 32)"
+export AUTH_CORS_ORIGINS="http://localhost:4200"
+docker compose up --build
+```
+
+En otros entornos, inyecta el secreto con el gestor de secretos aprobado y
+configura únicamente los orígenes web autorizados. Compose falla antes de
+crear los servicios si falta cualquiera de las variables.
 
 Abre http://localhost:4200. Usuario ficticio student, contraseña Workshop123!. Autenticación publica http://localhost:8080/q/health y la API http://localhost:8000/docs. La primera ejecución descarga imágenes y dependencias. Espera a que los tres servicios respondan: el orden de arranque no certifica que estén listos.
 
