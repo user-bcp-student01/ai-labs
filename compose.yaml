@@ -1,0 +1,29 @@
+name: ai-labs
+services:
+  auth:
+    build: ./auth
+    ports:
+      - "127.0.0.1:8080:8080"
+  api:
+    build: ./api
+    environment:
+      AUTH_HEALTH_URL: http://auth:8080/q/health
+      WORKSHOP_DB_PATH: /data/workshop.db
+      WORKSHOP_UPLOAD_DIR: /uploads
+    volumes:
+      - api-data:/data
+      - api-uploads:/uploads
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      - auth
+  web:
+    build: ./web
+    ports:
+      - "127.0.0.1:4200:80"
+    depends_on:
+      - auth
+      - api
+volumes:
+  api-data:
+  api-uploads:

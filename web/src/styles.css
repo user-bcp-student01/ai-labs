@@ -1,0 +1,76 @@
+/* ── ReqFlow design system — paleta inspirada en BCP ────────────────── */
+:root {
+  /* Marca */
+  --navy-900: #081633;
+  --navy-800: #0b1f45;
+  --navy-700: #123166;
+  --navy-600: #1a4180;
+  --orange-600: #d93f12;
+  --orange-500: #f0501e;
+  --orange-400: #f77a3d;
+
+  /* Superficie y texto */
+  --bg: #f2f4f9;
+  --surface: #ffffff;
+  --surface-alt: #eef1f8;
+  --field-bg: #f9fafc;
+  --field-border: #c7cee0;
+  --field-border-hover: #a8b3cf;
+  --border: #e2e6f0;
+  --ink: #101a33;
+  --ink-muted: #5b6b8c;
+  --ink-faint: #8b98b3;
+
+  /* Estado */
+  --success: #14875a;
+  --success-bg: #e4f6ee;
+  --warning: #b8720a;
+  --warning-bg: #fdf1de;
+  --info: #1a4180;
+  --info-bg: #e8eefb;
+  --danger: #b3261e;
+  --danger-bg: #fceceb;
+
+  /* Forma */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 8px rgba(11, 31, 69, 0.06);
+  --shadow-md: 0 12px 32px rgba(11, 31, 69, 0.12);
+  --shadow-lg: 0 24px 60px rgba(11, 31, 69, 0.16);
+
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 { font-family: inherit; letter-spacing: -0.015em; }
+
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--orange-500);
+  outline-offset: 2px;
+}
+
+/* ── Marca: doble chevron, evoca la paleta BCP sin copiar el isotipo ── */
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.brand-mark span {
+  width: 10px;
+  height: 18px;
+  clip-path: polygon(0 0, 45% 0, 100% 50%, 45% 100%, 0 100%, 55% 50%);
+}
+.brand-mark span:first-child { background: var(--orange-500); }
+.brand-mark span:last-child { background: var(--orange-600); margin-left: -6px; }
